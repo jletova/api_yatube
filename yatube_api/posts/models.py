@@ -44,3 +44,11 @@ class Comment(models.Model):
     created = models.DateTimeField(
         'Дата добавления', auto_now_add=True, db_index=True
     )
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=['author', 'text', 'post'],
+                name='unique_comment'
+            )
+        ]
